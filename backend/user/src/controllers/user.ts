@@ -75,7 +75,7 @@ export const myProfile = TryCatch(async (req: AuthenticatedRequest, res) => {
 });
 
 export const updateUser = TryCatch(async (req: AuthenticatedRequest, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user?._id);
   if (!user) {
     res.status(400).json({
       message: "please login first",
