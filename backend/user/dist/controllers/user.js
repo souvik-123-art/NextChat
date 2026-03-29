@@ -65,7 +65,7 @@ export const myProfile = TryCatch(async (req, res) => {
     res.json(user);
 });
 export const updateUser = TryCatch(async (req, res) => {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user?._id);
     if (!user) {
         res.status(400).json({
             message: "please login first",
@@ -80,5 +80,13 @@ export const updateUser = TryCatch(async (req, res) => {
         user,
         token,
     });
+});
+export const getAllUsers = TryCatch(async (req, res) => {
+    const users = await User.find();
+    res.json(users);
+});
+export const getUser = TryCatch(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    res.json(user);
 });
 //# sourceMappingURL=user.js.map

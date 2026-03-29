@@ -91,3 +91,13 @@ export const updateUser = TryCatch(async (req: AuthenticatedRequest, res) => {
     token,
   });
 });
+
+export const getAllUsers = TryCatch(async(req: AuthenticatedRequest, res)=>{
+  const users = await User.find()
+  res.json(users)
+})
+
+export const getUser = TryCatch(async(req: AuthenticatedRequest,res)=>{
+  const user = await User.findById(req.params.id)
+  res.json(user);
+})
